@@ -14,6 +14,8 @@ Guide wins.**
 | Configure and Manage Connectors — **SaaS 4.0** | <https://www.cisco.com/c/en/us/td/docs/security/workload_security/secure_workload/user-guide/4_0/cisco-secure-workload-user-guide-saas-v40/m-connectors.html> |
 | Identity Connectors (3.10) | <https://securitydocs.cisco.com/docs/csw/3-10/user/93083.dita> |
 | Microsoft Entra ID Connector (3.10) | <https://securitydocs.cisco.com/docs/csw/3-10/user/93082.dita> |
+| ISE Connector — Configure and Manage Connectors (4.0) | <https://www.cisco.com/c/en/us/td/docs/security/workload_security/secure_workload/user-guide/4_0/cisco-secure-workload-user-guide-on-prem-v40/configure-and-manage-connectors-for-secure-workload.html> |
+| Cisco ISE — pxGrid / Deploying Certificates with pxGrid | Cisco Identity Services Engine Administrator Guide (use the page for your ISE release) |
 | Azure Connector Configuration Overview (3.10) | <https://securitydocs.cisco.com/docs/csw/3-10/user/91138.dita> |
 | Configure External Authentication (admin login, 4.0) | <https://www.cisco.com/c/en/us/td/docs/security/workload_security/secure_workload/user-guide/4_0/cisco-secure-workload-user-guide-on-prem-v40/configure-external-athentication.html> |
 | Release Notes 3.10.3.x (User Identity Reporting from DC; Entra sign-in logs) | <https://www.cisco.com/c/en/us/td/docs/security/workload_security/secure_workload/release-notes/3_10/cisco_secure_workload_release_notes_3_10_3_19.html> |
@@ -36,6 +38,7 @@ pointer, not a guarantee for your build.
 | Microsoft Entra ID Connector | 3.10 / 4.0 | Graph API app registration; up to **6** attributes; `displayName` mapping |
 | Microsoft Entra ID **sign-in logs** (near-real-time IP→user) | 3.10.3.x release notes | Requires `AuditLog.Read.All`; enabled by an option during connector setup |
 | **User Identity Reporting from Domain Controller** (AD agent) | 3.10.3.x release notes | Agent on a DC, `CswAgent` under a domain-admin Service Logon Account, **Report Users** in the Agent Configuration Profile |
+| **ISE Connector** (endpoint/session identity via **pxGrid**) | Connectors guide (ISE connector) | Mutual-TLS pxGrid subscription; needs a CA-signed **pxGrid client cert** (CN/SAN + `clientAuth`) and the **ISE root CA**; pxGrid client must be **approved** in ISE. Certificate workflow validated on **3.7** in [`ise-pxgrid/`](../ise-pxgrid/README.md) |
 | External Authentication LDAP + LDAP Authorization (`MemberOf`→role) | 3.9 / 4.0 External Authentication | Admin console login only — **not** a labelling connector |
 
 ## A note on terminology

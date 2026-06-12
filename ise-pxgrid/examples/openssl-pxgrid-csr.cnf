@@ -1,0 +1,38 @@
+# OpenSSL configuration for a Cisco Secure Workload pxGrid CLIENT certificate.
+#
+# Purpose : generate the CSR + key the Secure Workload ISE connector
+#           presents to Cisco ISE over pxGrid (mutual TLS).
+# Usage   : openssl req -new -newkey rsa:2048 -nodes \
+#               -keyout ise-connector.key \
+#               -out    ise-connector.csr \
+#               -config openssl-pxgrid-csr.cnf
+#           openssl req -in ise-connector.csr -noout -text   # verify
+#
+# Replace every <PLACEHOLDER> and the example.com names with your values.
+# The CN and the SAN (DNS + IP) MUST match the connector identity, and
+# extendedKeyUsage MUST include clientAuth, or ISE pxGrid will reject it.
+
+[req]
+distinguished_name = req_distinguished_name
+req_extensions     = v3_req
+x509_extensions    = v3_req
+prompt             = no
+
+[req_distinguished_name]
+C  = US
+ST = <STATE>
+L  = <CITY>
+O  = <ORGANIZATION>
+OU = <ORG_UNIT>
+CN = ise-connector.example.com
+
+[v3_req]
+subjectKeyIdentifier = hash
+basicConstraints     = critical,CA:false
+subjectAltName       = @alt_names
+keyUsage             = critical,digitalSignature,keyEncipherment
+extendedKeyUsage     = serverAuth,clientAuth
+
+[alt_names]
+IP.1  = <ISE_CONNECTOR_IP>
+DNS.1 = ise-connector.example.com

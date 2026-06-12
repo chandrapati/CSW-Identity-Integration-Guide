@@ -9,13 +9,14 @@ and POV teams who need to get from *"we have CSW seeing flows"* to
 *"we can scope, label, and (where supported) enforce on user and
 user-group identity"* without surprises.
 
-This repo covers the three identity paths customers ask about by name:
+This repo covers the identity paths customers ask about by name:
 
 | You said… | CSW mechanism this repo documents | Folder |
 |---|---|---|
 | **"CSW AD"** | **Identity Connector → Active Directory** (and OpenLDAP) — imports users / user groups and their attributes | [`active-directory/`](./active-directory/README.md) |
 | **"Entra AD"** | **Microsoft Entra ID Connector** — Graph API app registration; user / group inventory + sign-in (event) logs | [`entra-id/`](./entra-id/README.md) |
 | **"AD Agent"** | **User Identity Reporting from a Domain Controller** — CSW agent on a DC reports IP→user mappings for the whole domain | [`ad-agent/`](./ad-agent/README.md) |
+| **"ISE" / "pxGrid"** | **ISE Connector** — subscribes to Cisco ISE over **pxGrid** (mutual TLS) for live endpoint / session identity context | [`ise-pxgrid/`](./ise-pxgrid/README.md) |
 
 > **Status.** Draft v1 (June 2026). Patterns and field tables are
 > documentation-grade and reflect the **CSW 4.0 / 3.10** User Guides.
@@ -92,6 +93,13 @@ CSW-Identity-Integration-Guide/
 │   ├── README.md
 │   ├── 01-domain-controller-user-identity.md ← agent on DC + Report Users
 │   └── examples/                       ← service-account checklist
+├── ise-pxgrid/                ← "ISE / pxGrid" — ISE Connector (mutual-TLS)
+│   ├── README.md
+│   ├── 01-pxgrid-overview-and-trust.md ← concepts, data flow, trust model
+│   ├── 02-certificate-setup.md         ← CSR → Windows CA signing → chain
+│   ├── 03-connector-configuration.md   ← onboard ISE connector + validation
+│   ├── 04-troubleshooting.md           ← pxGrid trust/connection issues
+│   └── examples/                       ← OpenSSL CSR config + CA commands
 ├── validation/                ← POV + adoption
 │   ├── README.md
 │   ├── 01-pov-test-plan.md             ← phased test plan + pass criteria
@@ -125,8 +133,9 @@ CSW-Identity-Integration-Guide/
    on-prem.
 4. **Follow the per-integration runbook** under
    [`active-directory/`](./active-directory/README.md),
-   [`entra-id/`](./entra-id/README.md), or
-   [`ad-agent/`](./ad-agent/README.md). Each is self-contained:
+   [`entra-id/`](./entra-id/README.md),
+   [`ad-agent/`](./ad-agent/README.md), or
+   [`ise-pxgrid/`](./ise-pxgrid/README.md). Each is self-contained:
    prerequisites, config steps with field tables, validation, common
    errors.
 5. **For a POV, drive from [`validation/01-pov-test-plan.md`](./validation/01-pov-test-plan.md)**
@@ -138,7 +147,7 @@ CSW-Identity-Integration-Guide/
 
 ---
 
-## The three identity paths at a glance
+## The identity paths at a glance
 
 | Path | What CSW learns | Where it runs | Best for |
 |---|---|---|---|
@@ -146,6 +155,7 @@ CSW-Identity-Integration-Guide/
 | **Identity Connector → OpenLDAP** | Users, user groups, up to **6** attributes | Same appliance / Secure Connector | Non-AD LDAP directories (OpenLDAP 2.6) |
 | **Microsoft Entra ID Connector** | Users, user groups, up to **6** attributes; `displayName` mapping; **sign-in logs** for near-real-time IP→user | CSW connector calling **Microsoft Graph** (app registration) | Cloud-first / Entra-ID-primary estates; live cloud sign-in mapping |
 | **User Identity Reporting (AD Agent)** | **Live IP→logged-in-user** for *all* domain-joined machines | CSW **agent installed on a Domain Controller**, `CswAgent` under a domain Service Logon Account | On-prem real-time "who is on this host right now" without an agent on every endpoint |
+| **ISE Connector (pxGrid)** | **Live endpoint / session identity** (user, device type, posture context) published by ISE | CSW **ISE connector** subscribing to ISE **pxGrid** over **mutual TLS** | Estates running Cisco ISE that want network-learned endpoint context as CSW labels |
 | *(related)* **External Authentication (LDAP/AD)** | *Admin* login + `MemberOf`→role | CSW cluster config (not a connector) | Logging operators into the CSW console with AD creds |
 
 Detailed comparison and decision tree in

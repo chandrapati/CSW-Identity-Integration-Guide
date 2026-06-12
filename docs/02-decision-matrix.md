@@ -12,6 +12,7 @@ starting point and the decision tree to combine paths.
 | "Entra ID is our source of truth for identity" | **Microsoft Entra ID** connector | [`entra-id/`](../entra-id/README.md) |
 | "Show me, live, which user is on which on-prem host" | **User Identity Reporting** (AD agent on a DC) | [`ad-agent/`](../ad-agent/README.md) |
 | "Show me, live, which user signed in from which IP in the cloud" | Entra ID connector with **sign-in logs** enabled | [`entra-id/03-sign-in-logs-user-mapping.md`](../entra-id/03-sign-in-logs-user-mapping.md) |
+| "We run Cisco ISE — bring its live endpoint/session identity into CSW" | **ISE connector** over **pxGrid** (mutual TLS) | [`ise-pxgrid/`](../ise-pxgrid/README.md) |
 | "Let our operators log into the CSW console with AD creds" | **External Authentication** (LDAP) + LDAP Authorization | [`active-directory/03-external-auth-ldap-rbac.md`](../active-directory/03-external-auth-ldap-rbac.md) |
 | "Enforce a rule that blocks *contractors* from the PCI scope" | AD/Entra **catalog** for the group label + **AD agent / Entra sign-ins** for live mapping + **Windows OS-based policy** | combine all three; see caveat below |
 
@@ -50,6 +51,7 @@ Is the directory Microsoft Entra ID (cloud)?
 | Identity Connector → AD / OpenLDAP | Connector reachable from CSW (virtual appliance) | Enable **Secure Connector** tunnel; or allow an **HTTP proxy** |
 | Entra ID connector | CSW → **Microsoft Graph** over the internet | Allow outbound HTTPS / proxy to Graph endpoints |
 | AD agent | CSW **agent on a Domain Controller** | Standard agent→cluster connectivity (see Agent Installation Guide) |
+| ISE connector (pxGrid) | CSW **ISE connector** → ISE **pxGrid** node (mutual TLS) | Enable **Secure Connector** tunnel / allow proxy; ensure pxGrid reachability |
 | External Authentication | CSW **cluster** → LDAP/AD | Cluster must reach the LDAP server (TLS recommended) |
 
 See [`docs/03-prerequisites.md`](./03-prerequisites.md) for sizing,

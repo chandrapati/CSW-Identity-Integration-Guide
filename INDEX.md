@@ -16,6 +16,10 @@ Fast navigation by question, by integration, and by POV phase.
 | Configure the Entra ID connector | [`entra-id/02-entra-id-connector.md`](./entra-id/02-entra-id-connector.md) |
 | Get near-real-time IP→user from Entra sign-ins | [`entra-id/03-sign-in-logs-user-mapping.md`](./entra-id/03-sign-in-logs-user-mapping.md) |
 | Get live IP→user for the whole on-prem domain | [`ad-agent/01-domain-controller-user-identity.md`](./ad-agent/01-domain-controller-user-identity.md) |
+| Bring live ISE endpoint/session identity into CSW (pxGrid) | [`ise-pxgrid/01-pxgrid-overview-and-trust.md`](./ise-pxgrid/01-pxgrid-overview-and-trust.md) |
+| Build & sign the pxGrid client certificate | [`ise-pxgrid/02-certificate-setup.md`](./ise-pxgrid/02-certificate-setup.md) |
+| Configure the ISE connector in CSW | [`ise-pxgrid/03-connector-configuration.md`](./ise-pxgrid/03-connector-configuration.md) |
+| Fix a pxGrid trust / connection problem | [`ise-pxgrid/04-troubleshooting.md`](./ise-pxgrid/04-troubleshooting.md) |
 | Run a POV | [`validation/01-pov-test-plan.md`](./validation/01-pov-test-plan.md) |
 | Score POV requirements | [`validation/02-evidence-matrix.md`](./validation/02-evidence-matrix.md) |
 | Write scopes / filters / policy on identity | [`validation/03-user-based-policy-examples.md`](./validation/03-user-based-policy-examples.md) |
@@ -32,6 +36,7 @@ Fast navigation by question, by integration, and by POV phase.
 | External Authentication (LDAP/AD) | [`active-directory/03-external-auth-ldap-rbac.md`](./active-directory/03-external-auth-ldap-rbac.md) | Cluster auth | Yes |
 | Microsoft Entra ID | [`entra-id/02-entra-id-connector.md`](./entra-id/02-entra-id-connector.md) | Connector (Graph) | Yes |
 | User Identity Reporting (AD agent) | [`ad-agent/01-domain-controller-user-identity.md`](./ad-agent/01-domain-controller-user-identity.md) | Host agent on DC | Yes (reads logon events) |
+| Cisco ISE (pxGrid) | [`ise-pxgrid/01-pxgrid-overview-and-trust.md`](./ise-pxgrid/01-pxgrid-overview-and-trust.md) | Connector (pxGrid / mTLS) | Yes (subscribes to context) |
 
 ## By POV phase
 
