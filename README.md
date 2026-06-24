@@ -1,5 +1,7 @@
 # Cisco Secure Workload — Identity Integration Guide
 
+![Visitors](https://visitor-badge.laobi.icu/badge?page_id=chandrapati.CSW-Identity-Integration-Guide&left_text=visitors)
+
 A practitioner-oriented reference for bringing **user and directory
 identity** into Cisco Secure Workload (CSW, formerly *Tetration*) so
 that segmentation policy, inventory, and forensic events can be
