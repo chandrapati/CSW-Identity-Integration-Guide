@@ -178,12 +178,20 @@ This repo is the **identity** chapter of the CSW practitioner toolkit:
 - [`chandrapati/CSW-Compliance-Mapping`](https://github.com/chandrapati/CSW-Compliance-Mapping)
   — framework mappings (identity-aware segmentation supports several
   access-control controls).
+- [`chandrapati/CSW-Epic-Microsegmentation-Guide`](https://github.com/chandrapati/CSW-Epic-Microsegmentation-Guide)
+  — healthcare: step-by-step Epic EHR tier microsegmentation; pairs with
+  HIPAA runbook and identity labels for clinical users.
 - [`chandrapati/csw-splunk-integration`](https://github.com/chandrapati/csw-splunk-integration)
   — exporting user-attributed flow / forensic events to the SOC.
 
 > **Suggested path for a new customer:**
 > CSW-Agent-Installation-Guide → **CSW-Identity-Integration-Guide** →
 > CSW-Policy-Lifecycle → csw-splunk-integration → CSW-Compliance-Mapping.
+
+> **Healthcare / Epic EHR:** add
+> [CSW-Epic-Microsegmentation-Guide](https://github.com/chandrapati/CSW-Epic-Microsegmentation-Guide)
+> after Policy Lifecycle — identity labels power clinical-access and
+> break-glass policy on Epic tiers.
 
 ---
 
